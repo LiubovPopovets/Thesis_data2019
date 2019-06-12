@@ -1,0 +1,38 @@
+### Macros scripts
+
+1) Script to filter countries from the downloaded data according to my own country list of 157 states.
+
+Sub Find_Matches()
+    Dim CompareRange As Variant, x As Variant, y As Variant
+    
+    Set CompareRange = Range("F2:F158")
+   
+    For Each x In Selection
+        For Each y In CompareRange
+            If x = y Then x.Offset(0, 1) = 0
+        Next y
+    Next x
+End Sub
+
+
+2) Script to find duplications and delete them.
+
+Sub HighlightMatches()
+    Application.ScreenUpdating = False
+    
+    Dim var As Variant, iSheet As Integer, iRow As Long, iRowL As Long, bln As Boolean
+       
+       iRowL = Cells(Rows.Count, 1).End(xlUp).Row
+       
+       For iRow = 1 To iRowL
+            
+          If bln = False Then
+             Cells(iRow, 1).Font.Bold = False
+             Else
+             Cells(iRow, 1).Clear
+          End If
+          
+       Next iRow
+    Application.ScreenUpdating = True
+End Sub
+
